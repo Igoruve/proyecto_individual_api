@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars
-    </title>
-</head>
-<body>
-    
-    <script src="/scripts.js/getData.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stars Wiki</title>
+  </head>
+  <body>    
+    <section id="browser-section" class="content hidden">
+        <div class="browser">
+            <input type="text" placeholder="Explore the galaxy...">
+            <button>Explore</button>
+        </div>
+    </section>
+    <script type="module" src="scripts.js/api.js"></script>
+    <script type="module" src="scripts.js/classes.js"></script>
+  </body>
 </html>
