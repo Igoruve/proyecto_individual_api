@@ -17,7 +17,6 @@ async function fetchData(url) {
 async function getCharacterByName(name) {
   const url = `people/?search=${name}`;
   const result = await fetchData(url);
-  console.log(result);
   return result[0];
 }
 

@@ -1,29 +1,17 @@
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const query = input.value.trim();
-  const type = searchType.value;
+import {
+  Characters,
+  Planets,
+  Films,
+  Species,
+  Starships,
+  Manager,
+} from "./classes.js";
 
-  if (query === "") {
-    alert("Type something...");
-    return;
-  }
+import {
+  getFilmByName,
+  getCharacterByName,
+  getPlanetByName,
+  getSpeciesByName,
+  getStarshipByName,
+} from "./api.js";
 
-  let result;
-
-  if (type === "character") {
-    result = await getCharacterByName(query);
-  } else if (type === "planet") {
-    result = await getPlanetByName(query);
-  } else if (type === "starship") {
-    result = await getStarshipByName(query);
-  } else if (type === "film") {
-    result = await getFilmByName(query);
-  } else if (type === "species") {
-    result = await getSpeciesByName(query);
-  } else {
-    alert("Select a valid type, please");
-    return;
-  }
-
-  renderResults(result);
-});
