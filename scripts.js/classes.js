@@ -259,6 +259,7 @@ class Manager {
               <p><strong>Homeworld:</strong> ${homeworldString}</p>
               <p><strong>Films:</strong> ${filmsString}</p>
               <p><strong>Starships:</strong> ${starshipsString}</p>
+              <button>Fav</button>
             `;
       } else if (result.director) {
         details = `
@@ -270,6 +271,7 @@ class Manager {
             <p><strong>Planets:</strong> ${planetsString}</p>
             <p><strong>Starships:</strong> ${starshipsString}</p>
             <p><strong>Species:</strong> ${speciesString}</p>
+            <button>Fav</button>
               `;
       } else if (result.climate) {
         details = `
@@ -283,6 +285,7 @@ class Manager {
               <p><strong>Rotation Period:</strong> ${result.rotation_period} hours</p>
               <p><strong>Residents:</strong> ${residentsString}</p>
               <p><strong>Films:</strong> ${filmsString}</p>
+              <button>Fav</button>
             `;
       } else if (result.model) {
         details = `
@@ -300,6 +303,7 @@ class Manager {
               <p><strong>Manufacturer:</strong> ${result.manufacturer}</p>
               <p><strong>Length:</strong> ${result.length} m</p>
               <p><strong>Cargo capacity:</strong> ${result.cargo_capacity} kg</p>
+              <button>Fav</button>
             `;
       } else if (result.language) {
         details = `
@@ -313,6 +317,7 @@ class Manager {
               <p><strong>Designation:</strong> ${result.designation}</p>
               <p><strong>Films:</strong> ${filmsString}</p>
               <p><strong>People:</strong> ${peopleString}</p>
+              <button>Fav</button>
             `;
       }
 

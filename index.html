@@ -4,24 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stars Wiki</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <section id="browser-section" class="content hidden">
-      <div class="browser">
-        <form id="searchForm">
-          <input id="input" type="text" placeholder="Explore the galaxy..." />
-          <select name="stars" id="stars">
-            <option value="films">Films</option>
-            <option value="people">People</option>
-            <option value="planets">Planets</option>
-            <option value="species">Species</option>
-            <option value="starships">Starships</option>
-          </select>
-          <button type="submit">Explore</button>
-        </form>
-      </div>
-    </section>
-    <section id="results"></section>
+    <nav id="nav">
+      <a href="#">Home</a>
+      <a href="#">Favorites</a>
+    </nav>
+    <main>
+      <section id="browser-section" class="content hidden">
+        <div class="browser">
+          <form id="searchForm">
+            <input id="input" type="text" placeholder="Explore the galaxy..." />
+            <select name="stars" id="stars">
+              <option value="films">Films</option>
+              <option value="people">People</option>
+              <option value="planets">Planets</option>
+              <option value="species">Species</option>
+              <option value="starships">Starships</option>
+            </select>
+            <button type="submit">Explore</button>
+          </form>
+        </div>
+      </section>
+      <section id="results"></section>
+    </main>
+    <footer></footer>
     <script type="module" src="scripts.js/api.js"></script>
     <script type="module" src="scripts.js/classes.js"></script>
     <script type="module" src="scripts.js/index.js"></script>

@@ -22,5 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const manager = new Manager(query, type);
     manager.browser();
+    
   });
 });
