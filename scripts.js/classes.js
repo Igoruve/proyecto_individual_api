@@ -6,6 +6,8 @@ import {
   getStarshipByName,
 } from "./api.js";
 
+import { addToLocalStorageArray } from "./favs.js";
+
 async function fetchItemFromUrl(url) {
   const response = await fetch(url);
   const data = await response.json();
@@ -246,83 +248,90 @@ class Manager {
       item.classList.add("result-item");
 
       let details = "";
-
+      let dataType = "";
       if (result.birth_year) {
+        dataType = "birth_year";
         details = `
-              <p><strong>Birth Year:</strong> ${result.birth_year}</p>
-              <p><strong>Gender:</strong> ${result.gender}</p>
-              <p><strong>Height:</strong> ${result.height} cm</p>
-              <p><strong>Weight:</strong> ${result.mass} kg</p>
-              <p><strong>Eye Color:</strong> ${result.eye_color}</p>
-              <p><strong>Hair Color:</strong> ${result.hair_color}</p>
-              <p><strong>Skin Color:</strong> ${result.skin_color}</p>
-              <p><strong>Homeworld:</strong> ${homeworldString}</p>
-              <p><strong>Films:</strong> ${filmsString}</p>
-              <p><strong>Starships:</strong> ${starshipsString}</p>
-              <button>Fav</button>
+              <h3>Birth Year:</h3> <p>${result.birth_year}</p>
+              <h3>Gender:</h3> <p>${result.gender}</p>
+              <h3>Height:</h3> <p>${result.height} cm</p>
+              <h3>Weight:</h3> <p>${result.mass} kg</p>
+              <h3>Eye Color:</h3> <p>${result.eye_color}</p>
+              <h3>Hair Color:</h3> <p>${result.hair_color}</p>
+              <h3>Skin Color:</h3> <p>${result.skin_color}</p>
+              <h3>Homeworld:</h3> <p>${homeworldString}</p>
+              <h3>Films:</h3> <p>${filmsString}</p>
+              <h3>Starships:</h3> <p>${starshipsString}</p>
+              <button id="fav-button">Save Favorite Destination</button>
             `;
       } else if (result.director) {
+        dataType = "director";
         details = `
-            <p><strong>Episode:</strong> ${result.episode_id}</p>
-            <p><strong>Release Date:</strong> ${result.release_date}</p>
-            <p><strong>Director:</strong> ${result.director}</p>
-            <p><strong>Producer:</strong> ${result.producer}</p>
-            <p><strong>Opening:</strong> ${result.opening_crawl}</p>
-            <p><strong>Planets:</strong> ${planetsString}</p>
-            <p><strong>Starships:</strong> ${starshipsString}</p>
-            <p><strong>Species:</strong> ${speciesString}</p>
-            <button>Fav</button>
+            <h3>Episode:</h3> <p>${result.episode_id}</p>
+            <h3>Release Date:</h3> <p>${result.release_date}</p>
+            <h3>Director:</h3> <p>${result.director}</p>
+            <h3>Producer:</h3> <p>${result.producer}</p>
+            <h3>Opening:</h3> <p>${result.opening_crawl}</p>
+            <h3>Planets:</h3> <p>${planetsString}</p>
+            <h3>Starships:</h3> <p>${starshipsString}</p>
+            <h3>Species:</h3> <p>${speciesString}</p>
+            <button id="fav-button">Save Favorite Destination</button>
               `;
       } else if (result.climate) {
+        dataType = "climate";
         details = `
-              <p><strong>Climate:</strong> ${result.climate}</p>
-              <p><strong>Terrain:</strong> ${result.terrain}</p>
-              <p><strong>Population:</strong> ${result.population} persons</p>
-              <p><strong>Diameter:</strong> ${result.diameter} km</p>
-              <p><strong>Gravity:</strong> ${result.gravity}</p>
-              <p><strong>Surface Water:</strong> ${result.surface_water}%</p>
-              <p><strong>Orbital Period:</strong> ${result.orbital_period} days</p>
-              <p><strong>Rotation Period:</strong> ${result.rotation_period} hours</p>
-              <p><strong>Residents:</strong> ${residentsString}</p>
-              <p><strong>Films:</strong> ${filmsString}</p>
-              <button>Fav</button>
+              <h3>Climate:</h3> <p>${result.climate}</p>
+              <h3>Terrain:</h3> <p>${result.terrain}</p>
+              <h3>Population:</h3> <p>${result.population} persons</p>
+              <h3>Diameter:</h3> <p>${result.diameter} km</p>
+              <h3>Gravity:</h3> <p>${result.gravity}</p>
+              <h3>Surface Water:</h3> <p>${result.surface_water}%</p>
+              <h3>Orbital Period:</h3> <p>${result.orbital_period} days</p>
+              <h3>Rotation Period:</h3> <p>${result.rotation_period} hours</p>
+              <h3>Residents:</h3> <p>${residentsString}</p>
+              <h3>Films:</h3> <p>${filmsString}</p>
+              <button id="fav-button">Save Favorite Destination</button>
             `;
       } else if (result.model) {
+        dataType = "model";
         details = `
-              <p><strong>Model:</strong> ${result.model}</p>
-              <p><strong>Passengers:</strong> ${result.passengers}</p>
-              <p><strong>Class:</strong> ${result.starship_class}</p>
-              <p><strong>Crew:</strong> ${result.crew}</p>
-              <p><strong>Model:</strong> ${result.model}</p>
-              <p><strong>Films:</strong> ${filmsString}</p>
-              <p><strong>Pilots:</strong> ${pilotsString}</p>
-              <p><strong>Consumables:</strong> ${result.consumables}</p>
-              <p><strong>Speed:</strong> ${result.max_atmosphering_speed}</p>
-              <p><strong>Cost:</strong> ${result.cost_in_credits} credits</p>
-              <p><strong>Hyperdrive Rating:</strong> ${result.hyperdrive_rating}</p>
-              <p><strong>Manufacturer:</strong> ${result.manufacturer}</p>
-              <p><strong>Length:</strong> ${result.length} m</p>
-              <p><strong>Cargo capacity:</strong> ${result.cargo_capacity} kg</p>
-              <button>Fav</button>
+              <h3>Model:</h3> <p>${result.model}</p>
+              <h3>Passengers:</h3> <p>${result.passengers}</p>
+              <h3>Class:</h3> <p>${result.starship_class}</p>
+              <h3>Crew:</h3> <p>${result.crew}</p>
+              <h3>Model:</h3> <p>${result.model}</p>
+              <h3>Films:</h3> <p>${filmsString}</p>
+              <h3>Pilots:</h3> <p>${pilotsString}</p>
+              <h3>Consumables:</h3> <p>${result.consumables}</p>
+              <h3>Speed:</h3> <p>${result.max_atmosphering_speed}</p>
+              <h3>Cost:</h3> <p>${result.cost_in_credits} credits</p>
+              <h3>Hyperdrive Rating:</h3> <p>${result.hyperdrive_rating}</p>
+              <h3>Manufacturer:</h3> <p>${result.manufacturer}</p>
+              <h3>Length:</h3> ${result.length} m</p>
+              <h3>Cargo capacity:</h3> <p>${result.cargo_capacity} kg</p>
+              <button id="fav-button">Save Favorite Destination</button>
             `;
       } else if (result.language) {
+        dataType = "language";
         details = `
-              <p><strong>Language:</strong> ${result.language}</p>
-              <p><strong>Classification:</strong> ${result.classification}</p>
-              <p><strong>Average Lifespan:</strong> ${result.average_lifespan} years</p>
-              <p><strong>Average Height:</strong> ${result.average_height} cm</p>
-              <p><strong>Eye Colors:</strong> ${result.eye_colors}</p>
-              <p><strong>Hair Colors:</strong> ${result.hair_colors}</p>
-              <p><strong>Skin Colors:</strong> ${result.skin_colors}</p>
-              <p><strong>Designation:</strong> ${result.designation}</p>
-              <p><strong>Films:</strong> ${filmsString}</p>
-              <p><strong>People:</strong> ${peopleString}</p>
-              <button>Fav</button>
+              <h3>Language:</h3> <p>${result.language}</p>
+              <h3>Classification:</h3> <p>${result.classification}</p>
+              <h3>Average Lifespan:</h3> <p>${result.average_lifespan} years</p>
+              <h3>Average Height:</h3> <p>${result.average_height} cm</p>
+              <h3>Eye Colors:</h3> <p>${result.eye_colors}</p>
+              <h3>Hair Colors:</h3> <p>${result.hair_colors}</p>
+              <h3>Skin Colors:</h3> <p>${result.skin_colors}</p>
+              <h3>Designation:</h3> <p>${result.designation}</p>
+              <h3>Films:</h3> <p>${filmsString}</p>
+              <h3>People:</h3> <p>${peopleString}</p>
+              <button id="fav-button">Save Favorite Destination</button>
             `;
       }
-
-      item.innerHTML = `<h1>${result.name || result.title}</h1>${details}`;
+      item.innerHTML = `<h2>${result.name || result.title}</h2>${details}`;
       resultsContainer.appendChild(item);
+      document.querySelector("#fav-button").addEventListener("click", () => {
+        addToLocalStorageArray(dataType, details);
+      });
     }
   }
 }

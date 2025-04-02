@@ -1,20 +1,28 @@
-import { BookHTML } from "./classesHTML.js";
+import { Manager } from "./classes.js";
 
-// Guardar objetos en LocalStorage
 function saveToLocalStorage (toberead, book) {
-	const stringBook = JSON.stringify(book);
-	console.log("hola");
+    const stringBook = JSON.stringify(book);
 	localStorage.setItem(toberead, stringBook);
 }
 
+function addToLocalStorageArray (fav, info) {
+    const array = getFromLocalStorage(fav) || [];
+    const index = array.findIndex(element => element.id === info.id);
+    if (index !== -1) {
+        return;
+    }
+    array.push(info);
+    saveToLocalStorage(fav, array);
+}
+
 // Recuperar todos los objetos guardados en el LocalStorage
-function getFromLocalStorage (toberead) {
-	const resultString = localStorage.getItem(toberead);
+function getFromLocalStorage (fav) {
+	const resultString = localStorage.getItem(fav);
 	const resultJSON = JSON.parse(resultString);
 	const result = [];
 	if(resultJSON !== null) {
-		resultJSON.forEach(book => { //crear un array de libros con el formato bookhtml
-			const bookCard = new BookHTML (
+		resultJSON.forEach(info => { //crear un array de libros con el formato bookhtml
+			const infoCard = new BookHTML (
 				book.id,
 				book.title,
 				book.publishedDate,
@@ -26,42 +34,32 @@ function getFromLocalStorage (toberead) {
 				book.authors,
 				book.infoLink
 			)
-			result.push(bookCard);
+			result.push(infoCard);
 		});	
 	}
 	
 	return result;
 }
 
-// Añadir libros al array guardado en LocalStorage
-function addToLocalStorageArray (toberead, book) {
-	const array = getFromLocalStorage(toberead) || [];
-	const index = array.findIndex(element => element.id === book.id);
-	if (index !== -1) {
-		return;
-	}
-	array.push(book);
-	saveToLocalStorage(toberead, array);
-}
 
 // Eliminar libros del array guardado en LocalStorage
-function removeFromLocalStorageArray (toberead, book) {
-	const array = getFromLocalStorage(toberead);
+function removeFromLocalStorageArray (fav, info) {
+	const array = getFromLocalStorage(fav);
 	if (!array) {
 		return;
 	}
-	const index = array.findIndex(element => element.id === book.id);
+	const index = array.findIndex(element => element.id === info.id);
 	if (index === -1) {
 		return;
 	}
 	array.splice(index, 1);
-	saveToLocalStorage(toberead, array);
+	saveToLocalStorage(fav, array);
 }
 
 // Buscar libros en lo guardado
-function findInLocalStorageArray (toberead, book) {
-	const array = getFromLocalStorage(toberead) || [];
-	return array.find(element => element.id === book.id);
+function findInLocalStorageArray (fav, info) {
+	const array = getFromLocalStorage(fav) || [];
+	return array.find(element => element.id === info.id);
 }
 
 // Función para guardar el formulario en local storage

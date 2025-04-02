@@ -3,27 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stars Wiki</title>
+    <title>Stars Wookie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <nav id="nav">
-      <a href="#">Home</a>
-      <a href="#">Favorites</a>
-    </nav>
+    <header id="header">
+      <div id="container_navbar">
+        <div class="text__and__logo">
+          <a href="#">
+          
+          </a>
+          <div id="section__nav__text">
+            <a href="#">Home</a>
+            <a href="#">Favorite Destinations</a>
+          </div>
+        </div>
+        <div id="section__nav__menu">
+          <svg
+            class="hamburger"
+            width="50"
+            height="50"
+            viewBox="0 0 50 50"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g class="lines">
+              <line class="top" x1="10" y1="15" x2="40" y2="15" />
+              <line class="middle" x1="10" y1="25" x2="40" y2="25" />
+              <line class="bottom" x1="10" y1="35" x2="40" y2="35" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </header>
     <main>
-      <section id="browser-section" class="content hidden">
+      <section id="hero">
+        <h1>Stars Wookie</h1>
+      </section>
+      <section id="browser-section">
         <div class="browser">
           <form id="searchForm">
-            <input id="input" type="text" placeholder="Explore the galaxy..." />
-            <select name="stars" id="stars">
-              <option value="films">Films</option>
-              <option value="people">People</option>
-              <option value="planets">Planets</option>
-              <option value="species">Species</option>
-              <option value="starships">Starships</option>
-            </select>
-            <button type="submit">Explore</button>
+            <input
+              id="input"
+              class="input"
+              type="text"
+              placeholder="Explore the galaxy..."
+            />
+            <div id="select__and__botton">
+              <select name="stars" id="stars">
+                <option value="" selected disabled>Filter Destination</option>
+                <option value="films">Films</option>
+                <option value="people">People</option>
+                <option value="planets">Planets</option>
+                <option value="species">Species</option>
+                <option value="starships">Starships</option>
+              </select>
+              <button type="submit">Jump to Hyperspace</button>
+            </div>
           </form>
         </div>
       </section>
@@ -34,5 +75,6 @@
     <script type="module" src="scripts.js/classes.js"></script>
     <script type="module" src="scripts.js/index.js"></script>
     <script type="module" src="scripts.js/form.js"></script>
+    <script src="scripts.js/navbar.js"></script>
   </body>
 </html>

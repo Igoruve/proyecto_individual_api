@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = searchType.value;
 
     if (query === "") {
-      alert("Type something...");
+      alert("Select a destination before lunch...");
       return;
     }
 
     const manager = new Manager(query, type);
     manager.browser();
-    
+
   });
 });
