@@ -6,7 +6,16 @@ import {
   getStarshipByName,
 } from "./api.js";
 
-import { addToLocalStorageArray } from "./favs.js";
+import {
+  saveToLocalStorage,
+  getFromLocalStorage,
+  addToLocalStorageArray,
+  removeFromLocalStorageArray,
+  findInLocalStorageArray,
+  formToLocalStorage,
+} from "./favs.js";
+
+import { showFavorites } from "./functions.js";
 
 async function fetchItemFromUrl(url) {
   const response = await fetch(url);
@@ -252,6 +261,8 @@ class Manager {
       if (result.birth_year) {
         dataType = "birth_year";
         details = `
+              <article id="article">
+              <h2>${result.name || result.title}</h2>
               <h3>Birth Year:</h3> <p>${result.birth_year}</p>
               <h3>Gender:</h3> <p>${result.gender}</p>
               <h3>Height:</h3> <p>${result.height} cm</p>
@@ -263,10 +274,13 @@ class Manager {
               <h3>Films:</h3> <p>${filmsString}</p>
               <h3>Starships:</h3> <p>${starshipsString}</p>
               <button id="fav-button">Save Favorite Destination</button>
+              </article>
             `;
       } else if (result.director) {
         dataType = "director";
-        details = `
+        details = `              
+            <article id="article">
+            <h2>${result.name || result.title}</h2>
             <h3>Episode:</h3> <p>${result.episode_id}</p>
             <h3>Release Date:</h3> <p>${result.release_date}</p>
             <h3>Director:</h3> <p>${result.director}</p>
@@ -276,10 +290,13 @@ class Manager {
             <h3>Starships:</h3> <p>${starshipsString}</p>
             <h3>Species:</h3> <p>${speciesString}</p>
             <button id="fav-button">Save Favorite Destination</button>
+            </article>
               `;
       } else if (result.climate) {
         dataType = "climate";
-        details = `
+        details = `                      
+              <article id="article">
+              <h2>${result.name || result.title}</h2>
               <h3>Climate:</h3> <p>${result.climate}</p>
               <h3>Terrain:</h3> <p>${result.terrain}</p>
               <h3>Population:</h3> <p>${result.population} persons</p>
@@ -291,10 +308,13 @@ class Manager {
               <h3>Residents:</h3> <p>${residentsString}</p>
               <h3>Films:</h3> <p>${filmsString}</p>
               <button id="fav-button">Save Favorite Destination</button>
+              </article>
             `;
       } else if (result.model) {
         dataType = "model";
         details = `
+              <article id="article">
+              <h2>${result.name || result.title}</h2>
               <h3>Model:</h3> <p>${result.model}</p>
               <h3>Passengers:</h3> <p>${result.passengers}</p>
               <h3>Class:</h3> <p>${result.starship_class}</p>
@@ -310,10 +330,13 @@ class Manager {
               <h3>Length:</h3> ${result.length} m</p>
               <h3>Cargo capacity:</h3> <p>${result.cargo_capacity} kg</p>
               <button id="fav-button">Save Favorite Destination</button>
+              </article>
             `;
       } else if (result.language) {
         dataType = "language";
         details = `
+              <article id="article">
+              <h2>${result.name || result.title}</h2>
               <h3>Language:</h3> <p>${result.language}</p>
               <h3>Classification:</h3> <p>${result.classification}</p>
               <h3>Average Lifespan:</h3> <p>${result.average_lifespan} years</p>
@@ -325,12 +348,22 @@ class Manager {
               <h3>Films:</h3> <p>${filmsString}</p>
               <h3>People:</h3> <p>${peopleString}</p>
               <button id="fav-button">Save Favorite Destination</button>
+              </article>
             `;
       }
-      item.innerHTML = `<h2>${result.name || result.title}</h2>${details}`;
+      item.innerHTML = `${details}`;
       resultsContainer.appendChild(item);
+
+      let isFaved = findInLocalStorageArray(dataType, details);
+
       document.querySelector("#fav-button").addEventListener("click", () => {
-        addToLocalStorageArray(dataType, details);
+        if (!isFaved) {
+          addToLocalStorageArray(dataType, details);
+          isFaved = !isFaved;
+        } else {
+          removeFromLocalStorageArray(dataType, details);
+          isFaved = !isFaved;
+        }
       });
     }
   }

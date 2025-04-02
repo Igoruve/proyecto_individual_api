@@ -61,7 +61,7 @@ h2 {
   margin-inline: 48px;
   color: var(--yellow-intense);
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-block: 24px;
 }
 
 h3 {
@@ -300,8 +300,15 @@ form button:hover {
 }
 
 #results {
-  margin-top: 100px;
+  margin-top: 124px;
   padding-bottom: 120px;
+}
+
+#article {
+  margin-inline: 24px;
+  padding-block: 24px;  
+  background-color: hsla(243, 45%, 47%, 0.69);
+  border-radius: 20px;
 }
 
 #results p {
@@ -310,6 +317,7 @@ form button:hover {
 
 #fav-button {
   margin-block: 24px;
+  margin-inline:24px;
   font-family: "Inter";
   font-size: 1.6rem;
   border: 2px solid var(--yellow-intense);
@@ -318,9 +326,10 @@ form button:hover {
   padding-inline: 12px;
   padding-block: 12px;
   cursor: pointer;
-  position: absolute;
-  right: 48px;
   width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 @media (min-width: 600px) {
@@ -384,12 +393,21 @@ form button:hover {
 }
 
 @media (min-width: 1000px) {
+  main {
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
   #fav-button {
     font-size: 2rem;
   }
 
   #section__nav__text a {
     font-size: 2rem;
+  }
+
+  #browser-section {
+    margin-bottom: 20%;
   }
 
   .browser {
