@@ -15,7 +15,7 @@ import {
   formToLocalStorage,
 } from "./localstorage.js";
 
-import { showFavorites } from "./functions.js";
+import { showFavorites } from "./showfavorites.js";
 
 async function fetchItemFromUrl(url) {
   const response = await fetch(url);
