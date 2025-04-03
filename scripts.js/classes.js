@@ -454,10 +454,10 @@ class Manager {
     console.log(favoritesContainer);
     localElements.forEach((favorito)=>{
       let favoritoLimpio = favorito.
-      replace(/\\n/g, '')  // Quita saltos de línea `\n`
-      .replace(/\\r/g, '')  // Quita retornos de carro `\r`
-      .replace(/\\"/g, '"') // Reemplaza `\"` por `"`, si es necesario
-      .replace(/^\["|"]$/g, ''); // Elimina los corchetes del array y comillas extra
+      replace(/\\n/g, '')  
+      .replace(/\\r/g, '')  
+      .replace(/\\"/g, '"') 
+      .replace(/^\["|"]$/g, ''); 
       console.log(favoritoLimpio);
       favoritesContainer.innerHTML = favoritesContainer.innerHTML+favoritoLimpio;
     })
