@@ -190,6 +190,13 @@ class Manager {
   }
 
   async browser() {
+    const resultsContainer = document.querySelector("#results");
+    resultsContainer.innerHTML = "";
+    const cargando = document.createElement("h4");
+    cargando.setAttribute("id", "h4");
+    cargando.textContent = "Jumping to hyperspace... Hold tight!";
+    resultsContainer.appendChild(cargando);
+
     let results = [];
     if (this.selectedCategory === "people") {
       results = await getCharacterByName(this.query);
@@ -212,7 +219,6 @@ class Manager {
 
   async renderResults(results) {
     const resultsContainer = document.getElementById("results");
-    resultsContainer.innerHTML = "";
 
     if (!Array.isArray(results) || results.length === 0) {
       resultsContainer.innerHTML = "<p>No results found</p>";
@@ -220,7 +226,73 @@ class Manager {
     }
 
     for (let result of results) {
+      const fetchPromises = [];
       let peopleString = "";
+      let residentsString = "";
+      let pilotsString = "";
+      let filmsString = "";
+      let planetsString = "";
+      let homeworldString = "";
+      let speciesString = "";
+      let starshipsString = "";
+
+      if (result.people && result.people.length > 0) {
+        fetchPromises.push(
+          fetchItems(result.people).then((result) => (peopleString = result))
+        );
+      }
+
+      if (result.residents && result.residents.length > 0) {
+        fetchPromises.push(
+          fetchItems(result.residents).then(
+            (result) => (residentsString = result)
+          )
+        );
+      }
+
+      if (result.pilots && result.pilots.length > 0) {
+        fetchPromises.push(
+          fetchItems(result.pilots).then((result) => (pilotsString = result))
+        );
+      }
+
+      if (result.films && result.films.length > 0) {
+        fetchPromises.push(
+          fetchItems(result.films).then((result) => (filmsString = result))
+        );
+      }
+
+      if (result.planets && result.planets.length > 0) {
+        fetchPromises.push(
+          fetchItems(result.planets).then((result) => (planetsString = result))
+        );
+      }
+
+      if (result.homeworld) {
+        fetchPromises.push(
+          fetchItems(result.homeworld).then(
+            (result) => (homeworldString = result)
+          )
+        );
+      }
+
+      if (result.species) {
+        fetchPromises.push(
+          fetchItems(result.species).then((result) => (speciesString = result))
+        );
+      }
+
+      if (result.starships && result.starships.length > 0) {
+        fetchPromises.push(
+          fetchItems(result.starships).then(
+            (result) => (starshipsString = result)
+          )
+        );
+      }
+
+      await Promise.all(fetchPromises);
+
+      /* let peopleString = "";
       if (result.people && result.people.length > 0) {
         peopleString = await fetchItems(result.people);
       }
@@ -251,7 +323,9 @@ class Manager {
       let starshipsString = "";
       if (result.starships && result.starships.length > 0) {
         starshipsString = await fetchItems(result.starships);
-      }
+      } */
+      const h4 = document.getElementById("h4");
+      h4.style.display = "none";
 
       const item = document.createElement("div");
       item.classList.add("result-item");
@@ -369,6 +443,27 @@ class Manager {
         }
       });
     }
+  }
+  async renderFavorites(fav) {
+    const categorias = Object.keys(localStorage);
+    const localElements = categorias.map((index)=>{
+      return localStorage.getItem(index);
+    })
+    console.log(localElements);
+    const favoritesContainer = document.querySelector("#favorites");
+    console.log(favoritesContainer);
+    localElements.forEach((favorito)=>{
+      let favoritoLimpio = favorito.
+      replace(/\\n/g, '')  // Quita saltos de línea `\n`
+      .replace(/\\r/g, '')  // Quita retornos de carro `\r`
+      .replace(/\\"/g, '"') // Reemplaza `\"` por `"`, si es necesario
+      .replace(/^\["|"]$/g, ''); // Elimina los corchetes del array y comillas extra
+      console.log(favoritoLimpio);
+      favoritesContainer.innerHTML = favoritesContainer.innerHTML+favoritoLimpio;
+    })
+    // const favLocalStorage = getFromLocalStorage("director") || [];
+    // console.log(favLocalStorage, "hola");
+    // favoritesContainer.appendChild(favLocalStorage[0]);
   }
 }
 

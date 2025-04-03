@@ -71,6 +71,28 @@ h3 {
   line-height: 1.5;
 }
 
+h4 {
+  text-align: center;
+  color: var(--yellow-intense);
+  font-size: 1.8rem;
+  position: relative;
+  transform-origin: 50% 100%;
+  animation: crawl 60s linear forwards;
+}
+
+@keyframes crawl {
+  0% {
+    transform: rotateX(45deg) translateY(-50px);
+    opacity: 1;
+    font-size: 3rem;
+  }
+  100% {
+    transform: rotateX(45deg) translateY(-150) translateZ(50px);
+    opacity: 0;
+    font-size: 0.2rem;
+  }
+}
+
 p,
 a {
   font-size: 1.8rem;
@@ -295,7 +317,8 @@ form button:hover {
   color: white;
 }
 
-#results {
+#results,
+#favorites {
   margin-top: 42px;
   padding-bottom: 120px;
 }
@@ -307,15 +330,20 @@ form button:hover {
   border-radius: 20px;
 }
 
-#results p {
+#results p,
+#favorites p {
   color: black;
 }
 
-#fav-button-section{
+#favorites article{
+  margin-bottom: 42px;
+}
+
+#fav-button-section {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-inline:48px;
+  margin-inline: 48px;
 }
 
 #fav-button {
@@ -395,7 +423,8 @@ form button:hover {
     font-size: 5.2rem;
   }
 
-  #results p {
+  #results p,
+  #favorites p {
     font-size: 2rem;
   }
 }
@@ -423,10 +452,19 @@ form button:hover {
   }
 
   #results p,
+  #favorites p,
   h1,
   h2,
   h3 {
     margin-inline: 120px;
+  }
+
+  h1 {
+    font-size: 6.4rem;
+  }
+
+  h2{
+    margin-block: 6.4rem;
   }
 
   #stars {
@@ -437,11 +475,9 @@ form button:hover {
     font-size: 2rem;
   }
 
-  h1 {
-    font-size: 6.4rem;
-  }
 
-  #results p {
+  #results p,
+  #favorites p {
     font-size: 2.4rem;
   }
 }

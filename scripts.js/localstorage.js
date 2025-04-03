@@ -6,7 +6,7 @@ function saveToLocalStorage(toberead, book) {
 }
 
 function addToLocalStorageArray(fav, info) {
-	console.log("Intenta añadir");
+  console.log("Intenta añadir");
   const array = getFromLocalStorage(fav) || [];
   const index = array.findIndex((element) => element.id === info.id);
   if (index !== -1) {
@@ -18,15 +18,23 @@ function addToLocalStorageArray(fav, info) {
 
 function getFromLocalStorage(fav) {
   const resultString = localStorage.getItem(fav);
-  const resultJSON = JSON.parse(resultString);
-  const result = [];
-  if (resultJSON !== null) {
-    resultJSON.forEach((info) => {
-      result.push(info);
-    });
+
+  if (!resultString) {
+    return [];
   }
 
-  return result;
+  try {
+    const resultJSON = JSON.parse(resultString);
+
+    if (!Array.isArray(resultJSON)) {
+      return [];
+    }
+
+    return resultJSON;
+  } catch (error) {
+    console.error("Error parsing JSON from localStorage:", error);
+    return [];
+  }
 }
 
 function removeFromLocalStorageArray(fav, info) {
