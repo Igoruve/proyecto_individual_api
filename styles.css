@@ -149,7 +149,9 @@ ul {
 
 #section__nav__text a {
   transition: color 150ms ease-in-out;
-  color: white;
+  color: var(--yellow-intense);
+  font-family: "Inter";
+  font-weight: 600;
 }
 
 #section__nav__menu {
@@ -163,7 +165,7 @@ ul {
 }
 
 .lines line {
-  stroke: white;
+  stroke: var(--yellow-intense);
   stroke-width: 4;
   stroke-linecap: round;
 }
@@ -184,7 +186,8 @@ ul {
 
 #section__nav__text.show {
   margin-top: 100px;
-  width: 70%;
+  margin-right: 42px;
+  width: auto;
   height: 100%;
   visibility: visible;
   display: flex;
@@ -196,13 +199,15 @@ ul {
   background-color: white;
   padding-inline: 42px;
   border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.411);
 }
 
 #section__nav__text.show a {
   font-size: 2rem;
-  color: black;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
 }
+
 #section__nav__text.show a:first-child {
   padding-bottom: 24px;
 }
@@ -328,6 +333,7 @@ form button:hover {
   margin-inline: 24px;
   padding-block: 24px;
   border-radius: 20px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.643);
 }
 
 #results p,
@@ -335,7 +341,7 @@ form button:hover {
   color: black;
 }
 
-#favorites article{
+#favorites article {
   margin-bottom: 42px;
 }
 
@@ -399,10 +405,11 @@ form button:hover {
     margin-left: 24px;
     font-size: 1.8rem;
     text-transform: uppercase;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.591);
   }
 
   #section__nav__text a:hover {
-    color: var(--yellow-intense);
+    color: white;
   }
 
   .logo {
@@ -463,7 +470,7 @@ form button:hover {
     font-size: 6.4rem;
   }
 
-  h2{
+  h2 {
     margin-block: 6.4rem;
   }
 
@@ -474,7 +481,6 @@ form button:hover {
   form button {
     font-size: 2rem;
   }
-
 
   #results p,
   #favorites p {

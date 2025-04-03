@@ -18,6 +18,7 @@ const favorites = document.querySelector("#favorites-page");
 const favoritesSection = document.querySelector("#favorites");
 
 favorites.addEventListener("click", () => {
+  results.style.display = "none";
   favoritesSection.style.display = "block";
   browserSection.style.display = "none";
   managerFav.renderFavorites();

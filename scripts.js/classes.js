@@ -446,21 +446,22 @@ class Manager {
   }
   async renderFavorites(fav) {
     const categorias = Object.keys(localStorage);
-    const localElements = categorias.map((index)=>{
+    const localElements = categorias.map((index) => {
       return localStorage.getItem(index);
-    })
+    });
     console.log(localElements);
     const favoritesContainer = document.querySelector("#favorites");
     console.log(favoritesContainer);
-    localElements.forEach((favorito)=>{
-      let favoritoLimpio = favorito.
-      replace(/\\n/g, '')  
-      .replace(/\\r/g, '')  
-      .replace(/\\"/g, '"') 
-      .replace(/^\["|"]$/g, ''); 
+    localElements.forEach((favorito) => {
+      let favoritoLimpio = favorito
+        .replace(/\\n/g, "")
+        .replace(/\\r/g, "")
+        .replace(/\\"/g, '"')
+        .replace(/^\["|"]$/g, "");
       console.log(favoritoLimpio);
-      favoritesContainer.innerHTML = favoritesContainer.innerHTML+favoritoLimpio;
-    })
+      favoritesContainer.innerHTML =
+        favoritesContainer.innerHTML + favoritoLimpio;
+    });
     // const favLocalStorage = getFromLocalStorage("director") || [];
     // console.log(favLocalStorage, "hola");
     // favoritesContainer.appendChild(favLocalStorage[0]);
