@@ -3,6 +3,11 @@ html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   background-color: var(--dark-blue);
+  background-image: url("assets/stars.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 *,
@@ -19,8 +24,6 @@ html {
 :root {
   --yellow-intense: hsl(48, 100%, 59%);
   --dark-blue: hsl(243, 48%, 16%);
-  --pink-soft: hsl(0, 100%, 91%);
-  --white: hsl(0, 0%, 100%);
 }
 
 body {
@@ -29,11 +32,6 @@ body {
   height: 100vh;
   margin: 0 auto;
   font-family: "Inter", sans-serif;
-  background-image: url("assets/stars.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 main {
@@ -67,7 +65,7 @@ h2 {
 h3 {
   margin-bottom: 12px;
   margin-inline: 48px;
-  color: white;
+  color: black;
   font-size: 2.4rem;
   font-weight: 500;
   line-height: 1.5;
@@ -94,7 +92,6 @@ p strong {
 
 a {
   text-decoration: none;
-  color: var(--pink-intense);
   font-weight: 400;
 }
 
@@ -182,7 +179,6 @@ ul {
 
 #section__nav__text.show a {
   font-size: 2rem;
-
   color: black;
 }
 #section__nav__text.show a:first-child {
@@ -300,24 +296,30 @@ form button:hover {
 }
 
 #results {
-  margin-top: 124px;
+  margin-top: 42px;
   padding-bottom: 120px;
 }
 
 #article {
+  background-color: white;
   margin-inline: 24px;
-  padding-block: 24px;  
-  background-color: hsla(243, 45%, 47%, 0.69);
+  padding-block: 24px;
   border-radius: 20px;
 }
 
 #results p {
-  text-shadow: 1px 1px 5px rgba(44, 44, 44, 0.483);
+  color: black;
+}
+
+#fav-button-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-inline:48px;
 }
 
 #fav-button {
   margin-block: 24px;
-  margin-inline:24px;
   font-family: "Inter";
   font-size: 1.6rem;
   border: 2px solid var(--yellow-intense);
@@ -330,6 +332,12 @@ form button:hover {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+
+#fav-button:hover {
+  background-color: var(--yellow-intense);
+  color: white;
 }
 
 @media (min-width: 600px) {

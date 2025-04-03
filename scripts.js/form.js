@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const browserSection= document.querySelector("#browser-section");
+
     const query = input.value.trim();
     const type = searchType.value;
 
@@ -19,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Select a destination before lunch...");
       return;
     }
-
+    
+    browserSection.style.display="none";
     const manager = new Manager(query, type);
     manager.browser();
 

@@ -13,7 +13,7 @@ import {
   removeFromLocalStorageArray,
   findInLocalStorageArray,
   formToLocalStorage,
-} from "./favs.js";
+} from "./localstorage.js";
 
 import { showFavorites } from "./functions.js";
 
@@ -273,7 +273,7 @@ class Manager {
               <h3>Homeworld:</h3> <p>${homeworldString}</p>
               <h3>Films:</h3> <p>${filmsString}</p>
               <h3>Starships:</h3> <p>${starshipsString}</p>
-              <button id="fav-button">Save Favorite Destination</button>
+              <div id="fav-button-section"><button id="fav-button">Save Favorite Destination</button>
               </article>
             `;
       } else if (result.director) {
@@ -289,7 +289,7 @@ class Manager {
             <h3>Planets:</h3> <p>${planetsString}</p>
             <h3>Starships:</h3> <p>${starshipsString}</p>
             <h3>Species:</h3> <p>${speciesString}</p>
-            <button id="fav-button">Save Favorite Destination</button>
+            <div id="fav-button-section"><button id="fav-button">Save Favorite Destination</button>
             </article>
               `;
       } else if (result.climate) {
@@ -307,7 +307,7 @@ class Manager {
               <h3>Rotation Period:</h3> <p>${result.rotation_period} hours</p>
               <h3>Residents:</h3> <p>${residentsString}</p>
               <h3>Films:</h3> <p>${filmsString}</p>
-              <button id="fav-button">Save Favorite Destination</button>
+              <div id="fav-button-section"><button id="fav-button">Save Favorite Destination</button>
               </article>
             `;
       } else if (result.model) {
@@ -327,9 +327,9 @@ class Manager {
               <h3>Cost:</h3> <p>${result.cost_in_credits} credits</p>
               <h3>Hyperdrive Rating:</h3> <p>${result.hyperdrive_rating}</p>
               <h3>Manufacturer:</h3> <p>${result.manufacturer}</p>
-              <h3>Length:</h3> ${result.length} m</p>
+              <h3>Length:</h3> <p>${result.length} m</p>
               <h3>Cargo capacity:</h3> <p>${result.cargo_capacity} kg</p>
-              <button id="fav-button">Save Favorite Destination</button>
+              <div id="fav-button-section"><button id="fav-button">Save Favorite Destination</button>
               </article>
             `;
       } else if (result.language) {
@@ -347,7 +347,7 @@ class Manager {
               <h3>Designation:</h3> <p>${result.designation}</p>
               <h3>Films:</h3> <p>${filmsString}</p>
               <h3>People:</h3> <p>${peopleString}</p>
-              <button id="fav-button">Save Favorite Destination</button>
+              <div id="fav-button-section"><button id="fav-button">Save Favorite Destination</button>
               </article>
             `;
       }
@@ -355,14 +355,17 @@ class Manager {
       resultsContainer.appendChild(item);
 
       let isFaved = findInLocalStorageArray(dataType, details);
+      const favButton = document.querySelector("#fav-button");
 
-      document.querySelector("#fav-button").addEventListener("click", () => {
+      favButton.addEventListener("click", () => {
         if (!isFaved) {
           addToLocalStorageArray(dataType, details);
-          isFaved = !isFaved;
+          isFaved = true;
+          favButton.textContent = "Remove Favorite Destination";
         } else {
           removeFromLocalStorageArray(dataType, details);
-          isFaved = !isFaved;
+          isFaved = false;
+          favButton.textContent = "Save Favorite Destination";
         }
       });
     }

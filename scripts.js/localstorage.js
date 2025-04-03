@@ -30,7 +30,6 @@ function getFromLocalStorage(fav) {
 }
 
 function removeFromLocalStorageArray(fav, info) {
-	console.log("Intenta quitar");
   const array = getFromLocalStorage(fav);
   if (!array) {
     return;
@@ -39,6 +38,7 @@ function removeFromLocalStorageArray(fav, info) {
   if (index === -1) {
     return;
   }
+
   array.splice(index, 1);
   saveToLocalStorage(fav, array);
 }

@@ -1,4 +1,4 @@
-import { getFromLocalStorage } from "./favs.js";
+import { getFromLocalStorage } from "./localstorage.js";
 
 function showFavorites() {
   const favsContainer = document.getElementById("favorites");
