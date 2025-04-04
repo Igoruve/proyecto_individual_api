@@ -34,7 +34,7 @@ Para ejecutar el proyecto localmente, sigue estos pasos:
 
 - Clona este repositorio o descarga el archivo ZIP.
 
-git clone https://github.com/tu_usuario/stars-wookie.git
+- git clone https://github.com/tu_usuario/stars-wookie.git
 
 - Extraer y abrir en un editor de código
 
@@ -54,5 +54,5 @@ Modo oscuro para una mejor experiencia visual.
 
 Adición de imágenes.
 
-
+--------------------------
 Que la fuerza te acompañe...
