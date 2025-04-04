@@ -1,10 +1,10 @@
-Stars Wookie - La Wiki Definitiva de Star Wars
+# Stars Wookie - La Wiki Definitiva de Star Wars
 
-Descripción
+## Descripción
 
 Stars Wookie es una wiki interactiva de Star Wars que permite explorar el universo de la saga utilizando la API de Star Wars API (SWAPI). Con una interfaz intuitiva y funcional, los usuarios pueden buscar y descubrir información sobre personajes, planetas, especies, naves y películas. Además, ofrece una sección de favoritos para guardar los elementos más interesantes.
 
-Características Principales
+## Características Principales
 
 Buscador avanzado: Filtra información por personajes, planetas, especies, naves o películas.
 
@@ -16,7 +16,7 @@ Interfaz interactiva y atractiva: Diseñada con HTML, CSS y JavaScript para una 
 
 Experiencia responsive: Adaptado para dispositivos móviles y de escritorio.
 
-Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 HTML5 - Estructura del proyecto.
 
@@ -26,7 +26,7 @@ JavaScript - Lógica de la aplicación e integración con la API.
 
 SWAPI - Fuente de datos sobre Star Wars.
 
-Cómo Ejecutar el Proyecto
+## Cómo Ejecutar el Proyecto
 
 Para ejecutar el proyecto localmente, sigue estos pasos:
 
@@ -48,7 +48,7 @@ git clone https://github.com/tu_usuario/stars-wookie.git
 
 - Disfruta de Stars Wookie!
 
-Mejoras Futuras
+## Mejoras Futuras
 
 Modo oscuro para una mejor experiencia visual.
 
