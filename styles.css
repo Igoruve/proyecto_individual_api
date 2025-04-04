@@ -22,7 +22,7 @@ html {
 }
 
 :root {
-  --yellow-intense: hsl(48, 100%, 59%);
+  --yellow-intense: #ffd52e;
   --dark-blue: hsl(243, 48%, 16%);
 }
 
